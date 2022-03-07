@@ -7,7 +7,7 @@ import UserSettings from '../screens/User/UserSettings';
 import FavoriteScreen from '../screens/User/FavoriteScreen'
 import CustomDrawerContent from './CustomDrawer';
 import { colors, icons } from '../../constans/Styles'
-import MyComments from '../screens/MyComments';
+import MyComments from '../screens/User/MyComments';
 
 const Drawer = createDrawerNavigator();
 
