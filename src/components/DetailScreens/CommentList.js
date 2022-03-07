@@ -1,6 +1,9 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
+
 import { colors } from '../../../constans/Styles';
-import { AntDesign } from '@expo/vector-icons';
+import CommentListLikeButton from './CommentListLikeButton';
+import CommentListEditButton from './CommentListEditButton';
+
 import { auth } from '../../../firebase'
 
 const CommentList = ({ item, editable, onDownVote, onUpVote, onEditPress, onDeletePress, placePhoto, placeName }) => {
@@ -19,24 +22,24 @@ const CommentList = ({ item, editable, onDownVote, onUpVote, onEditPress, onDele
                     <Text style={styles.userNameText}>{editable ? placeName : item.ownerName}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity
+                    <CommentListLikeButton
                         onPress={onUpVote}
-                        disabled={editable || isUsersComment ? true : false}
-                    >
-                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <AntDesign name={isUpVoted ? "like1" : "like2"} size={16} color={editable || isUsersComment ? "grey" : "green"} />
-                            <Text style={{ fontSize: 10 }}>({item.upVote ? item.upVote.length : 0})</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity
+                        editable={editable}
+                        isUsersComment={isUsersComment}
+                        item={item}
+                        iconName={isUpVoted ? "like1" : "like2"}
+                        iconColor={(editable || isUsersComment ? "grey" : "green")}
+                        label={item.upVote ? item.upVote.length : 0}
+                    />
+                    <CommentListLikeButton
+                        editable={editable}
                         onPress={onDownVote}
-                        disabled={editable || isUsersComment ? true : false}
-                    >
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 25 }}>
-                            <AntDesign name={isDownVoted ? "dislike1" : "dislike2"} size={16} color={editable || isUsersComment ? "grey" : "darkred"} />
-                            <Text style={{ fontSize: 10 }} >({item.downVote ? item.downVote.length : 0})</Text>
-                        </View>
-                    </TouchableOpacity>
+                        isUsersComment={isUsersComment}
+                        item={item}
+                        iconName={isDownVoted ? "dislike1" : "dislike2"}
+                        iconColor={(editable || isUsersComment ? "grey" : "darkred")}
+                        label={item.downVote ? item.downVote.length : 0}
+                    />
                 </View>
             </View>
             <View style={styles.contentCont}>
@@ -47,18 +50,16 @@ const CommentList = ({ item, editable, onDownVote, onUpVote, onEditPress, onDele
                 {
                     editable && (
                         <>
-                            <TouchableOpacity onPress={onEditPress}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 20 }}>
-                                    <AntDesign name="edit" size={16} color={colors.btnBackground} />
-                                    <Text style={{ color: colors.btnBackground, fontSize: 10, marginLeft: 10 }}>Düzenle</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={onDeletePress}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 20 }}>
-                                    <AntDesign name="delete" size={16} color={colors.btnBackground} />
-                                    <Text style={{ color: colors.btnBackground, fontSize: 10, marginLeft: 10 }}>Sil</Text>
-                                </View>
-                            </TouchableOpacity>
+                            <CommentListEditButton
+                                iconName="edit"
+                                onPress={onEditPress}
+                                label="Düzenle"
+                            />
+                            <CommentListEditButton
+                                iconName="delete"
+                                onPress={onDeletePress}
+                                label="Sil"
+                            />
                         </>
                     )
                 }

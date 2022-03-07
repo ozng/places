@@ -3,7 +3,7 @@ export const fontSizes = {
     xlarge: 22,
     large: 20,
     medium: 16,
-    small: 14
+    small: 12
 }
 
 export const colors = {

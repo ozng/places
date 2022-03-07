@@ -1,17 +1,18 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { colors } from '../../../constans/Styles'
+import { FontAwesome } from '@expo/vector-icons';
 
 const Comments = props => {
     return (
-        <View style={styles.container}>
-            <TouchableOpacity
-                onPress={props.onPress}
-                style={styles.btn}
-            >
-                <Text style={styles.label}>
-                    Yorumlar
-                </Text>
-            </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+            onPress={props.onPress}
+            style={styles.container}
+        >
+            <Text style={styles.label}>
+                Yorumlar
+            </Text>
+            <FontAwesome name="commenting-o" size={24} color={colors.btnBackground} />
+        </TouchableOpacity>
     )
 }
 
@@ -19,18 +20,19 @@ export default Comments
 
 const styles = StyleSheet.create({
     container: {
-        borderRadius: 5,
-        borderWidth: 3,
-        borderColor: 'rgba(255, 193, 7, 1)',
-        width: '98%',
-        alignSelf: 'center',
+        // borderColor: colors.btnBackground,
+        // borderWidth: 1,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row'
     },
     btn: {},
     label: {
         fontSize: 18,
         padding: 15,
         textAlign: 'center',
-        color: 'rgba(255, 160, 1, 1)',
-        fontFamily: 'bitter-regular'
+        color: colors.btnBackground,
+        fontFamily: 'barlow-medium'
     },
 })
