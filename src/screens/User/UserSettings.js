@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { StyleSheet, View, Image, Text, ActivityIndicator } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import Firebase from 'firebase/'
@@ -6,12 +6,14 @@ import { auth } from '../../../firebase'
 
 import * as userActions from '../../../store/actions/user'
 import { takeImageFromCamera, pickImageFromGallery } from '../../../store/actions/common'
-import Inputs from '../../../components/Inputs'
-import Header from '../../../components/Header'
-import Button from '../../../components/Button'
-import ButtonOutline from '../../../components/ButtonOutline'
-import Uploading from '../../../components/Uploading'
-import WarningModal from '../../../components/WarningModal'
+
+import Inputs from '../../components/UI/Inputs'
+import Header from '../../components/UI/Header'
+import Button from '../../components/UI/Button'
+import ButtonOutline from '../../components/UI/ButtonOutline'
+import Uploading from '../../components/Uploading'
+import WarningModal from '../../components/Modals/WarningModal'
+
 import { colors, fontSizes } from '../../../constans/Styles'
 
 const UserSettings = ({ navigation }) => {

@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, ActivityIndicator, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import * as commentsActions from '../../store/actions/comments'
-import Header from '../../components/Header'
-import Button from '../../components/Button';
+
+import Header from '../components/UI/Header'
+import Button from '../components/UI/Button';
+import CommentList from '../components/DetailScreens/CommentList';
+import WarningModal from '../components/Modals/WarningModal';
+
 import { colors } from '../../constans/Styles';
-import CommentList from '../../components/DetailScreens/CommentList';
-import WarningModal from '../../components/WarningModal';
 
 const CommentsScreen = ({ route, navigation }) => {
     const params = route.params

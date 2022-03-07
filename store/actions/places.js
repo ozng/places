@@ -106,8 +106,6 @@ export const updatePlace = (place) => {
                     }
                 },
                 ownerId: place.ownerId,
-                star: [],
-                comments: [],
                 categoryId: place.categoryID,
                 date: new Date().toString(),
             })

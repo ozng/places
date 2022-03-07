@@ -1,4 +1,3 @@
-import React from 'react';
 import { Text, View, Image, StyleSheet } from 'react-native'
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
@@ -22,7 +21,10 @@ const CustomDrawerContent = props => {
                 <DrawerItem
                     label="Logout"
                     labelStyle={{ padding: 10, fontFamily: 'bitter-regular', color: colors.btnBackground, fontSize: fontSizes.small }}
-                    onPress={() => dispatch(userActions.logoutHandler())}
+                    onPress={() => {
+                        dispatch(userActions.logoutHandler()
+                        )
+                    }}
                     icon={() => <Ionicons name="log-out-outline" size={icons.small} color={colors.btnBackground} />}
                 />
             </DrawerContentScrollView>

@@ -1,10 +1,11 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import { useEffect, useCallback, useState } from 'react'
 import { StyleSheet, View, FlatList } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 
-import Header from '../../../components/Header'
-import ListItem from '../../../components/ListItem'
-import DeleteModal from '../../../components/DeleteModal'
+import Header from '../../components/UI/Header'
+import ListItem from '../../components/ListItem'
+import DeleteModal from '../../components/Modals/DeleteModal'
+
 import * as placesActions from '../../../store/actions/places'
 import * as categoriesActions from '../../../store/actions/categories'
 

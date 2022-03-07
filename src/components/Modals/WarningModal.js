@@ -1,11 +1,9 @@
-import React from 'react';
 import { View, Text, StyleSheet, Modal } from 'react-native';
-import { colors } from '../constans/Styles';
-import Button from './Button';
-import ButtonOutline from './ButtonOutline'
 
+import { colors } from '../../../constans/Styles';
+import Button from '../UI/Button';
 
-const DeleteModal = ({ title, visible, label, onConfirm, onCancel }) => {
+const WarningModal = ({ label, visible, onPress }) => {
     return (
         <View>
             <Modal
@@ -16,7 +14,7 @@ const DeleteModal = ({ title, visible, label, onConfirm, onCancel }) => {
             >
                 <View style={styles.container}>
                     <View>
-                        <Text style={styles.title}>{title}</Text>
+                        <Text style={styles.title}>UYARI</Text>
                     </View>
                     <View>
                         <Text style={styles.label}>{label}</Text>
@@ -24,11 +22,7 @@ const DeleteModal = ({ title, visible, label, onConfirm, onCancel }) => {
                     <View style={styles.btn}>
                         <Button
                             title="Tamam"
-                            onPress={onConfirm}
-                        />
-                        <ButtonOutline
-                            title="Vazgeç"
-                            onPress={onCancel}
+                            onPress={onPress}
                         />
                     </View>
                 </View>
@@ -40,29 +34,27 @@ const DeleteModal = ({ title, visible, label, onConfirm, onCancel }) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        marginHorizontal: 15,
+        padding: 10,
+        marginHorizontal: 50,
         borderRadius: 20,
-        marginTop: '60%',
+        marginTop: '50%',
         elevation: 10
     },
     title: {
         textAlign: 'center',
-        padding: 10,
         fontSize: 18,
         color: colors.btnBackground,
         fontFamily: 'montserrat-medium'
     },
     label: {
-        padding: 20,
+        paddingVertical: 20,
         textAlign: 'center',
-        fontSize: 14,
+        fontSize: 12,
         fontFamily: 'barlow-regular'
     },
     btn: {
-        alignSelf: 'center',
-        flexDirection: 'row',
-        paddingVertical: 20
+        alignSelf: 'center'
     }
 })
 
-export default DeleteModal;
+export default WarningModal;

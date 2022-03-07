@@ -1,8 +1,7 @@
-import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 
-import { colors, fontSizes, icons } from '../constans/Styles'
+import { colors, fontSizes, icons } from '../../../constans/Styles'
 
 const Header = ({ headerTitle, onPress, createPlace, goBack }) => {
     return (

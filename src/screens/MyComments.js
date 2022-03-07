@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import * as commentsActions from '../../store/actions/comments';
-import CommentList from '../../components/DetailScreens/CommentList';
-import Header from '../../components/Header';
-import EditCommentModal from '../../components/EditCommentModal';
-import DeleteModal from '../../components/DeleteModal';
+
+import CommentList from '../components/DetailScreens/CommentList';
+import Header from '../components/UI/Header';
+import EditCommentModal from '../components/Modals/EditCommentModal';
+import DeleteModal from '../components/Modals/DeleteModal';
 
 const MyComments = props => {
     const [newComment, setNewComment] = useState("")

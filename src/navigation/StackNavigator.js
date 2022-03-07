@@ -1,8 +1,6 @@
-import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from '../screens/HomeScreen'
-import ListScreen from '../screens/ListScreen'
 import DetailScreen from '../screens/DetailScreen'
 import CreatePlaceScreen from '../screens/create_place_screens/CreatePlaceScreen'
 import FirstStep from "../screens/create_place_screens/FirstStep";
@@ -23,7 +21,6 @@ const StackNavigator = () => {
             <Stack.Screen name="Auth" component={AuthScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="List" component={ListScreen} />
             <Stack.Screen name="Detail" component={DetailScreen} />
             <Stack.Screen name="Comments" component={CommentsScreen} />
             <Stack.Screen name="Create" component={CreatePlaceScreen} />

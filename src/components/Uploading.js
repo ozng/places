@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { colors } from '../constans/Styles'
 import { Entypo } from '@expo/vector-icons';
+
+import { colors } from '../../constans/Styles'
 
 const Uploading = ({ label, iconType }) => {
     return (

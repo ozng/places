@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { StyleSheet, View, ActivityIndicator } from 'react-native'
 import { auth } from '../../firebase';
 
@@ -7,16 +7,16 @@ const AuthScreen = ({ navigation }) => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user && !user.displayName && !user.photoURL) {
-                navigation.navigate('Settings')
+                navigation.replace('Settings')
             } else if (user) {
-                navigation.navigate('Home')
+                navigation.replace('Home')
             } else {
-                navigation.navigate('Login')
+                navigation.replace('Login')
             }
         })
 
-        return unsubscribe
-    }, [])
+        return unsubscribe;
+    }, [navigation])
 
     return (
         <View style={styles.screen}>

@@ -1,8 +1,8 @@
-import React from 'react'
 import { StyleSheet, Text, View, Modal } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../constans/Styles'
+
+import { colors } from '../../../constans/Styles'
 
 const MapModal = (props) => {
     return (

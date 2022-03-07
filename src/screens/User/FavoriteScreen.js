@@ -1,9 +1,10 @@
-import React, { useEffect, useCallback } from 'react'
+import { useEffect, useCallback } from 'react'
 import { StyleSheet, View, FlatList } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 
-import Header from '../../../components/Header'
-import ListItem from '../../../components/ListItem'
+import Header from '../../components/UI/Header'
+import ListItem from '../../components/ListItem'
+
 import * as userActions from '../../../store/actions/user'
 
 

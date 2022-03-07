@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
-import Inputs from '../../../components/Inputs'
-import Button from '../../../components/Button';
+
+import Inputs from '../../components/UI/Inputs'
+import Button from '../../components/UI/Button';
+
 import { colors } from '../../../constans/Styles';
 
 

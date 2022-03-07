@@ -1,8 +1,7 @@
-import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { colors } from '../../constans/Styles';
+import { colors } from '../../../constans/Styles';
 import { AntDesign } from '@expo/vector-icons';
-import { auth } from '../../firebase'
+import { auth } from '../../../firebase'
 
 const CommentList = ({ item, editable, onDownVote, onUpVote, onEditPress, onDeletePress, placePhoto, placeName }) => {
     const currentUserID = auth.currentUser.uid

@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Modal, FlatList, TouchableOpacity } from 'react-native'
-import React from 'react'
-import { colors } from '../constans/Styles'
+import { colors } from '../../../constans/Styles'
 
 import { MaterialIcons } from '@expo/vector-icons';
 

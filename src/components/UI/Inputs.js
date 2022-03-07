@@ -1,6 +1,6 @@
-import React from 'react'
 import { StyleSheet, Text, View, TextInput } from 'react-native'
-import { colors } from '../constans/Styles'
+
+import { colors } from '../../../constans/Styles'
 
 const Inputs = ({ title, value, onChangeText, placeholder, multiline, onTouchEnd, editable }) => {
     return (

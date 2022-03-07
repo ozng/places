@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { useState } from 'react'
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import { useDispatch } from 'react-redux';
 
 import * as userActions from '../../store/actions/user'
-import WarningModal from '../../components/WarningModal.js'
-import Button from '../../components/Button';
-import ButtonOutline from '../../components/ButtonOutline';
+
+import WarningModal from '../components/Modals/WarningModal'
+import Button from '../components/UI/Button';
+import ButtonOutline from '../components/UI/ButtonOutline';
+
 import { colors } from '../../constans/Styles';
 
 const LoginScreen = ({ navigation }) => {
@@ -32,6 +34,7 @@ const LoginScreen = ({ navigation }) => {
         setErrorMessage("")
         try {
             await dispatch(userActions.loginHandler(email, password))
+            navigation.replace('Auth')
         }
         catch (err) {
             setErrorMessage(err.message)
@@ -46,6 +49,7 @@ const LoginScreen = ({ navigation }) => {
             style={styles.container}
             behavior='height'
         >
+            {/* <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> */}
             <View style={styles.inputContainer}>
                 <TextInput
                     value={email}
@@ -88,6 +92,7 @@ const LoginScreen = ({ navigation }) => {
                     onPress={() => setVisible(prevState => !prevState)}
                 />
             </View>
+            {/* </TouchableWithoutFeedback> */}
         </KeyboardAvoidingView>
     )
 }

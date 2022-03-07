@@ -1,6 +1,6 @@
-import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import { colors } from '../constans/Styles'
+
+import { colors } from '../../../constans/Styles'
 
 const Button = ({ onPress, title, disabled, style }) => {
     return (

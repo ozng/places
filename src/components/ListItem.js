@@ -1,9 +1,8 @@
-import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { Rating } from 'react-native-elements';
 
-import { fontSizes, colors } from '../constans/Styles'
+import { fontSizes, colors } from '../../constans/Styles'
 
 const ListItem = ({ onpress, data, deletable, deleteItem }) => {
 
@@ -42,7 +41,6 @@ const ListItem = ({ onpress, data, deletable, deleteItem }) => {
                                         readonly
                                         fractions={0}
                                         startingValue={data.star}
-                                        readonly
                                         imageSize={12}
                                     />
                                     <Text style={styles.totalStarLength}>({data.totalPoints})</Text>

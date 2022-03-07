@@ -1,8 +1,8 @@
-import React from 'react';
 import { View, Text, Modal, StyleSheet, TextInput } from 'react-native';
-import { colors } from '../constans/Styles';
-import Button from './Button'
-import ButtonOutline from './ButtonOutline'
+
+import { colors } from '../../../constans/Styles';
+import Button from '../UI/Button'
+import ButtonOutline from '../UI/ButtonOutline'
 
 const EditCommentModal = (props) => {
 

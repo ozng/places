@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, ImageBackground, Image, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux'
 import { Rating } from 'react-native-elements';
 
-import Button from '../../components/Button'
 import * as userActions from '../../store/actions/user'
 import * as placeActions from '../../store/actions/places'
-import MapModal from '../../components/MapModal';
-import Comments from '../../components/DetailScreens/Comments';
+
+import Button from '../components/UI/Button'
+import MapModal from '../components/Modals/MapModal';
+import Comments from '../components/DetailScreens/Comments';
+
 import { auth } from '../../firebase';
 import { colors, fontSizes } from '../../constans/Styles'
 
