@@ -11,6 +11,8 @@ import Button from '../components/UI/Button'
 import MapModal from '../components/Modals/MapModal';
 import Comments from '../components/DetailScreens/Comments';
 
+import { fetchPoints } from '../actions/PlaceHandlers'
+import { showModalHandler } from '../actions/UIHandlers'
 import { auth } from '../../firebase';
 import { colors, fontSizes } from '../../constans/Styles'
 
@@ -26,25 +28,15 @@ const DetailScreen = ({ navigation, route, }) => {
 
     const dispatch = useDispatch();
 
-    const data = route.params.detailData;
+    const data = route.params.detailData
     const currentUserId = auth.currentUser.uid
 
     const userFavorite = useSelector(state => state.userData.userFavorites)
 
-    const fetchPoints = async () => {
-        const response = await fetch(`https://adroit-nuance-315720-default-rtdb.europe-west1.firebasedatabase.app/places/${data.id}.json`)
-        const resData = await response.json();
-        return resData
-    }
-
-    const showModalHandler = () => {
-        setShowModal(prevState => !prevState)
-    };
-
     useEffect(() => {
         (
             async () => {
-                const resData = await fetchPoints();
+                const resData = await fetchPoints(data.item.id);
                 const star = resData.star
                 if (resData && star && resData.star.length > 0) {
                     let sayi = 0
@@ -64,7 +56,7 @@ const DetailScreen = ({ navigation, route, }) => {
             }
         )()
 
-    }, [data.id])
+    }, [data.item.id])
 
     useEffect(() => {
         for (const key in userFavorite) {
@@ -72,7 +64,7 @@ const DetailScreen = ({ navigation, route, }) => {
                 setIsFavorite(true)
             }
         }
-    }, [data])
+    }, [data.item])
 
     useEffect(() => {
         (
@@ -93,20 +85,20 @@ const DetailScreen = ({ navigation, route, }) => {
                 setUserInfo(placeOwner[userIndex]);
             }
         )()
-    }, [data])
+    }, [data.item])
 
     const addFavHandler = () => {
-        dispatch(userActions.addToFav(data))
+        dispatch(userActions.addToFav(data.item))
         setIsFavorite(prevState => !prevState)
     }
 
     const deleteFavHandler = () => {
-        dispatch(userActions.deleteToFav(data.id))
+        dispatch(userActions.deleteToFav(data.item.id))
         setIsFavorite(prevState => !prevState)
     }
 
     const addStarHandler = async () => {
-        const resData = await fetchPoints();
+        const resData = await fetchPoints(data.item.id);
         let pointArr = [];
         if (resData.star && resData?.star.length > 0) {
             pointArr = resData.star.slice(0)
@@ -121,7 +113,7 @@ const DetailScreen = ({ navigation, route, }) => {
             })
         }
 
-        dispatch(placeActions.giveStar(data.id, pointArr))
+        dispatch(placeActions.giveStar(data.item.id, pointArr))
         setDisableRate(true)
     }
 
@@ -138,7 +130,7 @@ const DetailScreen = ({ navigation, route, }) => {
                         <View style={styles.screen}>
                             <ScrollView>
                                 <ImageBackground
-                                    source={{ uri: data.image }}
+                                    source={{ uri: data.item.image }}
                                     style={styles.image}
                                 >
                                     <View style={styles.topBtnsContainer}>
@@ -164,7 +156,7 @@ const DetailScreen = ({ navigation, route, }) => {
                                         </View>
                                     </View>
                                 </ImageBackground>
-                                <Text style={styles.title}>{data.title}</Text>
+                                <Text style={styles.title}>{data.item.title}</Text>
                                 {
                                     userInfo && (
                                         <View style={styles.userContainer}>
@@ -210,10 +202,10 @@ const DetailScreen = ({ navigation, route, }) => {
                                 </View>
 
                                 <View style={styles.descriptionCntnr}>
-                                    <Text style={styles.description}>{data.description}</Text>
+                                    <Text style={styles.description}>{data.item.description}</Text>
                                 </View>
                                 <TouchableOpacity
-                                    onPress={showModalHandler}
+                                    onPress={() => setShowModal(showModalHandler(showModal))}
                                     activeOpacity={0.85}
                                 >
                                     <View style={styles.mapRow}>
@@ -225,20 +217,20 @@ const DetailScreen = ({ navigation, route, }) => {
                                 <View style={{ marginVertical: 20 }}>
                                     <Comments
                                         onPress={() => navigation.navigate('Comments', {
-                                            placeId: data.id,
-                                            title: data.title,
+                                            placeId: data.item.id,
+                                            title: data.item.title,
                                             currentUserId: currentUserId
                                         })}
                                     />
                                 </View>
                                 <View style={styles.addressConteiner}>
-                                    <Text style={styles.addressText}>{data.city} - {data.district}</Text>
-                                    <Text style={styles.addressText}>{data.address}</Text>
+                                    <Text style={styles.addressText}>{data.item.city} - {data.item.district}</Text>
+                                    <Text style={styles.addressText}>{data.item.address}</Text>
                                 </View>
                                 <MapModal
-                                    onPress={showModalHandler}
+                                    onPress={() => setShowModal(showModalHandler(showModal))}
                                     showModal={showModal}
-                                    data={data}
+                                    data={data.item}
                                 />
 
                             </ScrollView>
@@ -290,10 +282,9 @@ const styles = StyleSheet.create({
         fontFamily: 'barlow-medium'
     },
     title: {
-        fontSize: fontSizes.max,
-        padding: 10,
+        fontSize: fontSizes.xlarge,
+        paddingVertical: 10,
         textAlign: 'center',
-        marginVertical: 10,
         color: colors.btnBackground,
         fontFamily: 'barlow-medium'
     },

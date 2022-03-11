@@ -7,7 +7,7 @@ import { auth } from '../../../firebase'
 import { EvilIcons } from '@expo/vector-icons';
 
 import * as placeActions from '../../../store/actions/places'
-import { pickImageFromGallery, takeImageFromCamera } from '../../../store/actions/common'
+import { pickImageFromGallery, takeImageFromCamera } from '../../actions/CameraActions'
 import { colors } from '../../../constans/Styles';
 import Uploading from '../../components/Uploading';
 

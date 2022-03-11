@@ -51,12 +51,12 @@ const CommentList = ({ item, editable, onDownVote, onUpVote, onEditPress, onDele
                     editable && (
                         <>
                             <CommentListEditButton
-                                iconName="edit"
+                                iconName="square-edit-outline"
                                 onPress={onEditPress}
                                 label="Düzenle"
                             />
                             <CommentListEditButton
-                                iconName="delete"
+                                iconName="delete-outline"
                                 onPress={onDeletePress}
                                 label="Sil"
                             />

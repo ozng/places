@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
-import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Rating } from 'react-native-elements';
 
 import { fontSizes, colors } from '../../constans/Styles'
@@ -41,7 +41,7 @@ const ListItem = ({ onpress, data, deletable, deleteItem }) => {
                                         readonly
                                         fractions={0}
                                         startingValue={data.star}
-                                        imageSize={12}
+                                        imageSize={10}
                                     />
                                     <Text style={styles.totalStarLength}>({data.totalPoints})</Text>
                                 </View>
@@ -51,8 +51,8 @@ const ListItem = ({ onpress, data, deletable, deleteItem }) => {
                     {
                         deletable && (
                             <View style={styles.deleteIcon}>
-                                <AntDesign
-                                    name="delete"
+                                <MaterialCommunityIcons
+                                    name="delete-outline"
                                     size={18}
                                     color={colors.btnBackground}
                                     onPress={deleteItem}
@@ -68,27 +68,28 @@ const ListItem = ({ onpress, data, deletable, deleteItem }) => {
 
 const styles = StyleSheet.create({
     screen: {
-        marginHorizontal: 10,
-        marginVertical: 15,
-        borderTopLeftRadius: 25,
-        borderBottomLeftRadius: 25,
+        marginLeft: 7,
+        marginVertical: 10,
+        borderTopLeftRadius: 100,
+        borderBottomLeftRadius: 100,
         borderTopRightRadius: 10,
         borderBottomRightRadius: 10,
         backgroundColor: colors.background,
         elevation: 5,
     },
     image: {
-        height: 120,
-        width: 120,
-        borderTopLeftRadius: 25,
-        borderBottomLeftRadius: 25
+        height: 100,
+        width: 100,
+        borderTopLeftRadius: 40,
+        borderBottomLeftRadius: 40
     },
     row: {
         flexDirection: 'row'
     },
     titleCont: {
+        height: 80,
         width: '60%',
-        padding: 10
+        paddingTop: 7
     },
     titleText: {
         marginHorizontal: 15,

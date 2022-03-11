@@ -38,17 +38,7 @@ const FavoriteScreen = ({ navigation }) => {
                         <ListItem
                             data={item}
                             onpress={() => navigation.navigate('Detail', {
-                                detailData: {
-                                    id: item.id,
-                                    title: item.title,
-                                    city: item.city,
-                                    district: item.district,
-                                    image: item.image,
-                                    description: item.description,
-                                    address: item.address,
-                                    lat: item.lat,
-                                    lng: item.lng
-                                }
+                                detailData: { item }
                             })}
                         />
                     )

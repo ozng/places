@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { View, FlatList, StyleSheet } from 'react-native'
+import { View, FlatList } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 
 import Header from '../components/UI/Header'
@@ -15,11 +15,11 @@ const HomeScreen = ({ navigation }) => {
 
     const dispatch = useDispatch();
 
-    const loadPlaces = useCallback(async () => {
+    const loadPlaces = useCallback(() => {
         setIsRefreshing(true)
-        await dispatch(placesActions.setPlaces())
-        await dispatch(userActions.setFav())
-        await dispatch(commentsActions.fetchComments())
+        dispatch(placesActions.setPlaces())
+        dispatch(userActions.setFav())
+        dispatch(commentsActions.fetchComments())
         setIsRefreshing(false)
     }, [dispatch])
 
@@ -33,7 +33,10 @@ const HomeScreen = ({ navigation }) => {
 
 
     return (
-        <View style={styles.screen}>
+        <View style={{
+            backgroundColor: '#fff',
+            flex: 1
+        }}>
             <Header
                 headerTitle="Keşfet"
                 onPress={() => navigation.toggleDrawer()}
@@ -46,19 +49,7 @@ const HomeScreen = ({ navigation }) => {
                     return (
                         <ListItem
                             onpress={() => navigation.navigate('Detail', {
-                                detailData: {
-                                    id: item.id,
-                                    ownerId: item.ownerId,
-                                    title: item.title,
-                                    city: item.city,
-                                    district: item.district,
-                                    image: item.image,
-                                    description: item.description,
-                                    address: item.address,
-                                    lat: item.lat,
-                                    lng: item.lng,
-                                    categoryID: item.categoryId
-                                }
+                                detailData: { item }
                             })}
                             data={item}
                         />
@@ -68,12 +59,5 @@ const HomeScreen = ({ navigation }) => {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    screen: {
-        backgroundColor: '#fff',
-        flex: 1
-    }
-})
 
 export default HomeScreen

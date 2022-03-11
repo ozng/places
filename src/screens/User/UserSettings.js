@@ -5,7 +5,7 @@ import Firebase from 'firebase/'
 import { auth } from '../../../firebase'
 
 import * as userActions from '../../../store/actions/user'
-import { takeImageFromCamera, pickImageFromGallery } from '../../../store/actions/common'
+import { takeImageFromCamera, pickImageFromGallery } from '../../actions/CameraActions'
 
 import Inputs from '../../components/UI/Inputs'
 import Header from '../../components/UI/Header'
