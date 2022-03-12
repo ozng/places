@@ -59,11 +59,18 @@ export const loginHandler = (email, password) => {
     }
 }
 
-export const createUser = (email, password) => {
+export const createUser = (email, password, displayName) => {
     return async dispatch => {
         try {
             const response = await auth.createUserWithEmailAndPassword(email, password)
             const userData = await response.user
+
+            const imageURL = "https://firebasestorage.googleapis.com/v0/b/adroit-nuance-315720.appspot.com/o/noavatar.png?alt=media&token=e7718f38-775d-4a40-a03b-2f1712572723"
+
+            await auth.currentUser.updateProfile({
+                displayName: displayName,
+                photoURL: imageURL
+            })
 
             // Kullanıcı bilgilerinin yedeğini db içerisine alıyoruz.
             await fetch(`https://adroit-nuance-315720-default-rtdb.europe-west1.firebasedatabase.app/users.json`, {
@@ -74,15 +81,15 @@ export const createUser = (email, password) => {
                 body: JSON.stringify({
                     userId: userData.uid,
                     email: userData.email,
-                    photoURL: userData.photoURL,
-                    displayName: userData.displayName,
+                    photoURL: imageURL,
+                    displayName: displayName,
                 })
             })
             const newUser = new User(
                 userData.uid,
                 userData.email,
-                userData.photoURL,
-                userData.displayName
+                imageURL,
+                displayName
             )
             dispatch({ type: ADD_USER, payload: newUser })
         } catch (err) {
@@ -130,7 +137,7 @@ export const updateUserHandler = (nick, avatar, oldAvatar, userId) => {
 
         const data = await keys.filter(key => key.ownerId === userId)
 
-        await fetch(`https://adroit-nuance-315720-default-rtdb.europe-west1.firebasedatabase.app/users/${data[0].id}.json`, {
+        await fetch(`https://adroit-nuance-315720-default-rtdb.europe-west1.firebasedatabase.app/users/${data[0]?.id}.json`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -173,7 +180,7 @@ export const addToFav = (place) => {
 
         const data = await keys.filter(key => key.ownerId === currentUserId)
 
-        const userUrl = `https://adroit-nuance-315720-default-rtdb.europe-west1.firebasedatabase.app/users/${data[0].id}.json`
+        const userUrl = `https://adroit-nuance-315720-default-rtdb.europe-west1.firebasedatabase.app/users/${data[0]?.id}.json`
 
         const oldFav = await fetch(userUrl)
         const oldFavJson = await oldFav.json()
@@ -220,7 +227,7 @@ export const deleteToFav = (placeId) => {
 
         const data = await keys.filter(key => key.ownerId === currentUserId)
 
-        const userUrl = `https://adroit-nuance-315720-default-rtdb.europe-west1.firebasedatabase.app/users/${data[0].id}.json`
+        const userUrl = `https://adroit-nuance-315720-default-rtdb.europe-west1.firebasedatabase.app/users/${data[0]?.id}.json`
 
         const oldFav = await fetch(userUrl)
         const oldFavJson = await oldFav.json()
@@ -260,7 +267,7 @@ export const setFav = () => {
 
         const data = await keys.filter(key => key.ownerId === currentUserId)
 
-        const userUrl = `https://adroit-nuance-315720-default-rtdb.europe-west1.firebasedatabase.app/users/${data[0].id}.json`
+        const userUrl = `https://adroit-nuance-315720-default-rtdb.europe-west1.firebasedatabase.app/users/${data[0]?.id}.json`
 
         const oldFav = await fetch(userUrl)
         const oldFavJson = await oldFav.json()

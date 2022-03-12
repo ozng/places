@@ -2,18 +2,13 @@ import { StyleSheet, Text, View, TextInput } from 'react-native'
 
 import { colors } from '../../../constans/Styles'
 
-const Inputs = ({ title, value, onChangeText, placeholder, onTouchEnd, editable }) => {
+const Inputs = ({ title, ...props }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{title}</Text>
             <TextInput
                 style={styles.input}
-                value={value}
-                onChangeText={onChangeText}
-                placeholder={placeholder}
-                multiline={true}
-                onTouchEnd={onTouchEnd}
-                editable={editable}
+                {...props}
             />
         </View>
     )
@@ -21,25 +16,24 @@ const Inputs = ({ title, value, onChangeText, placeholder, onTouchEnd, editable 
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        paddingHorizontal: '2%'
+        marginVertical: 10
     },
     text: {
-        fontSize: 16,
+        fontSize: 14,
         color: colors.inputText,
-        paddingTop: 5,
         paddingLeft: 5,
-        fontFamily: 'barlow-medium'
+        fontFamily: 'barlow-medium',
     },
     input: {
         backgroundColor: colors.inputBackground,
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        borderRadius: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 7,
         marginTop: 5,
-        borderColor: colors.inputText,
-        borderWidth: 1.5,
-        fontFamily: 'barlow-regular'
+        fontFamily: 'barlow-regular',
+        borderRadius: 15,
+        fontSize: 12,
+        color: 'black',
+        elevation: 2.3
     }
 })
 

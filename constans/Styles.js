@@ -9,7 +9,7 @@ export const fontSizes = {
 export const colors = {
     background: '#FFFFFF',
     fadedFont: 'grey',
-    inputBackground: '#fff',
+    inputBackground: '#f8f8f8',
     inputText: '#EC407A',
     btnBackground: "#EC407A"
 }

@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import * as Location from 'expo-location';
 
-import Inputs from '../../components/UI/Inputs'
-import Button from '../../components/UI/Button'
-import ButtonOutline from '../../components/UI/ButtonOutline'
+import Inputs from '../../../components/UI/Inputs'
+import Button from '../../../components/UI/Button'
+import ButtonOutline from '../../../components/UI/ButtonOutline'
 import { Entypo } from '@expo/vector-icons';
-import { colors } from '../../../constans/Styles'
+import { colors } from '../../../../constans/Styles'
 import { useSelector } from 'react-redux';
 
-import CategoryModal from '../../components/Modals/CategoryModal';
+import CategoryModal from '../../../components/Modals/CategoryModal';
 
 const FirstStep = ({ route, navigation }) => {
     const placeData = route.params?.placeData;

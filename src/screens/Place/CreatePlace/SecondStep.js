@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
 
-import Inputs from '../../components/UI/Inputs'
-import Button from '../../components/UI/Button';
+import Inputs from '../../../components/UI/Inputs'
+import Button from '../../../components/UI/Button';
 
-import { colors } from '../../../constans/Styles';
+import { colors } from '../../../../constans/Styles';
 
 
 const SecondStep = ({ route, navigation }) => {

@@ -7,12 +7,10 @@ import { auth } from '../../../firebase'
 import * as userActions from '../../../store/actions/user'
 import { takeImageFromCamera, pickImageFromGallery } from '../../actions/CameraActions'
 
-import Inputs from '../../components/UI/Inputs'
 import Header from '../../components/UI/Header'
 import Button from '../../components/UI/Button'
 import ButtonOutline from '../../components/UI/ButtonOutline'
 import Uploading from '../../components/Uploading'
-import WarningModal from '../../components/Modals/WarningModal'
 
 import { colors, fontSizes } from '../../../constans/Styles'
 
@@ -26,9 +24,6 @@ const UserSettings = ({ navigation }) => {
     const [loading, setLoading] = useState(true);
     const [uploading, setUploading] = useState(false)
     const [uploaded, setUploaded] = useState(false)
-    const [warning, setWarning] = useState(false)
-
-    const warningMessage = "Lütfen fotoğraf ve kullanıcı adı belirleyiniz."
 
     const dispatch = useDispatch();
 
@@ -92,21 +87,9 @@ const UserSettings = ({ navigation }) => {
                             <View style={{
                                 flex: 1
                             }}>
-                                <WarningModal
-                                    visible={warning}
-                                    label={warningMessage}
-                                    onPress={() => setWarning(false)}
-                                />
                                 <Header
                                     headerTitle=""
-                                    onPress={() => {
-                                        if (!userData[0].displayName && !userData[0].imageUrl) {
-                                            setWarning(true)
-                                            return;
-                                        } else {
-                                            navigation.toggleDrawer()
-                                        }
-                                    }}
+                                    onPress={() => navigation.toggleDrawer()}
                                 />
                                 <View style={styles.screen}>
                                     <View style={styles.userDataContainer}>
@@ -117,19 +100,6 @@ const UserSettings = ({ navigation }) => {
                                         <Text style={styles.nick}>{userData[0]?.displayName}</Text>
                                         <Text style={styles.emailText}>{userData[0]?.email}</Text>
                                     </View>
-                                    {
-                                        userData[0]?.displayName
-                                            ? null
-                                            : <View>
-                                                <Inputs
-                                                    placeholder="OG"
-                                                    title="Kullanıcı Adı"
-                                                    value={nick}
-                                                    onChangeText={text => setNick(text)}
-                                                />
-                                                <Text style={styles.warningText}>Kullanıcı adı yanlızca bir kere değiştirilebilir...</Text>
-                                            </View>
-                                    }
                                     <View style={styles.btnContainer}>
                                         <Button
                                             title="Kamera"
@@ -155,6 +125,15 @@ const UserSettings = ({ navigation }) => {
                                             onPress={updateUserHandler}
                                         />
                                     </View>
+                                    <View style={styles.logoutBtn}>
+                                        <ButtonOutline
+                                            title="Çıkış Yap"
+                                            onPress={() => {
+                                                navigation.closeDrawer()
+                                                dispatch(userActions.logoutHandler())
+                                            }}
+                                        />
+                                    </View>
                                 </View>
                             </View>
                         )
@@ -174,11 +153,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     image: {
-        width: 100,
-        height: 100,
+        width: 80,
+        height: 80,
         borderRadius: 100,
-        borderWidth: 1,
-        borderColor: colors.btnBackground,
     },
     nick: {
         fontSize: fontSizes.large,
@@ -202,10 +179,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 30
     },
-    warningText: {
-        fontSize: 12,
-        color: colors.btnBackground,
-        marginTop: 10,
-        textAlign: 'center',
+    logoutBtn: {
+        position: 'absolute',
+        bottom: 20,
+        width: '100%',
+        alignItems: 'center'
     }
 })

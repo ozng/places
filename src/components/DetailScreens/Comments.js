@@ -20,8 +20,6 @@ export default Comments
 
 const styles = StyleSheet.create({
     container: {
-        // borderColor: colors.btnBackground,
-        // borderWidth: 1,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',

@@ -2,14 +2,14 @@ import { useState } from 'react'
 import { StyleSheet, View, ImageBackground, Text } from 'react-native'
 import { useDispatch } from 'react-redux'
 import Firebase from 'firebase/'
-import Button from '../../components/UI/Button'
-import { auth } from '../../../firebase'
+import Button from '../../../components/UI/Button'
+import { auth } from '../../../../firebase'
 import { EvilIcons } from '@expo/vector-icons';
 
-import * as placeActions from '../../../store/actions/places'
-import { pickImageFromGallery, takeImageFromCamera } from '../../actions/CameraActions'
-import { colors } from '../../../constans/Styles';
-import Uploading from '../../components/Uploading';
+import * as placeActions from '../../../../store/actions/places'
+import { pickImageFromGallery, takeImageFromCamera } from '../../../actions/CameraActions'
+import { colors } from '../../../../constans/Styles';
+import Uploading from '../../../components/Uploading';
 
 const CreatePlaceScreen = ({ navigation, route }) => {
     const placeData = route.params?.placeData;

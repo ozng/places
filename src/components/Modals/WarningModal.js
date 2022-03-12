@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Modal } from 'react-native';
 
 import { colors } from '../../../constans/Styles';
-import Button from '../UI/Button';
+import ButtonOutline from '../UI/ButtonOutline';
 
 const WarningModal = ({ label, visible, onPress }) => {
     return (
@@ -20,7 +20,7 @@ const WarningModal = ({ label, visible, onPress }) => {
                         <Text style={styles.label}>{label}</Text>
                     </View>
                     <View style={styles.btn}>
-                        <Button
+                        <ButtonOutline
                             title="Tamam"
                             onPress={onPress}
                         />
