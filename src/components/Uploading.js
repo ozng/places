@@ -1,14 +1,42 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { useRef, useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Animated, Easing } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
 
 import { colors } from '../../constans/Styles'
 
-const Uploading = ({ label, iconType }) => {
+const Uploading = ({ label = "Yükleniyor", iconType = "location" }) => {
+    const [fadeAnimation, setFadeAnimation] = useState(new Animated.Value(0))
+
+    useEffect(() => {
+        Animated.loop(
+            Animated.sequence([
+                Animated.timing(
+                    fadeAnimation,
+                    {
+                        toValue: 1,
+                        duration: 1000,
+                        useNativeDriver: true,
+                        easing: Easing.ease
+                    },
+                ),
+                Animated.timing(
+                    fadeAnimation,
+                    {
+                        toValue: 0,
+                        duration: 600,
+                        useNativeDriver: true,
+                        easing: Easing.ease
+                    },
+                )
+            ])
+        ).start()
+    }, [fadeAnimation])
+
     return (
-        <View style={styles.screen}>
+        <Animated.View style={{ ...styles.screen, opacity: fadeAnimation }}>
             <Text style={styles.text}>{label}</Text>
             <Entypo name={iconType} size={50} color={colors.btnBackground} />
-        </View>
+        </Animated.View>
     )
 }
 

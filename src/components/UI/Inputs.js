@@ -2,12 +2,12 @@ import { StyleSheet, Text, View, TextInput } from 'react-native'
 
 import { colors } from '../../../constans/Styles'
 
-const Inputs = ({ title, ...props }) => {
+const Inputs = ({ title, style, ...props }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{title}</Text>
             <TextInput
-                style={styles.input}
+                style={[styles.input, style]}
                 {...props}
             />
         </View>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         fontSize: 12,
         color: 'black',
-        elevation: 2.3
+        elevation: 2.3,
     }
 })
 

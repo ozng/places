@@ -70,7 +70,7 @@ const CreatePlaceScreen = ({ navigation, route }) => {
                         categoryID: params.categoryID
                     }))
                     blob.close();
-                    navigation.navigate('Home')
+                    navigation.navigate('List')
                 })
             }
         )
@@ -124,7 +124,7 @@ const CreatePlaceScreen = ({ navigation, route }) => {
                         categoryID: params.categoryID
                     }))
                     blob.close();
-                    navigation.navigate('Home')
+                    navigation.navigate('List')
                 })
             }
         )

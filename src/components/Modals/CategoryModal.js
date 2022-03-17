@@ -3,13 +3,13 @@ import { colors } from '../../../constans/Styles'
 
 import { MaterialIcons } from '@expo/vector-icons';
 
-const CategoryModal = ({ visible, data, setValue, setVisible, }) => {
+const CategoryModal = ({ visible, data, setValue, setVisible }) => {
     return (
         <View>
-            <Modal visible={visible} >
-                <View style={styles.container}>
+            <Modal style={styles.screen} animationType='fade' visible={visible} >
+                <View>
                     <FlatList
-                        numColumns={2}
+                        numColumns={1}
                         data={data}
                         renderItem={({ item, index }) => {
                             return (
@@ -24,11 +24,8 @@ const CategoryModal = ({ visible, data, setValue, setVisible, }) => {
                                     }}>
                                         <View style={styles.itemContainer}>
                                             <Text style={[styles.itemText]}>{item.name}</Text>
-                                            <MaterialIcons name={item.icon} size={18} color='white' style={{
-                                                paddingVertical: 20,
-                                                paddingRight: 20
-                                            }} />
                                         </View>
+                                        <View style={styles.divider} />
                                     </TouchableOpacity>
                                 </View>
                             )
@@ -43,23 +40,24 @@ const CategoryModal = ({ visible, data, setValue, setVisible, }) => {
 export default CategoryModal
 
 const styles = StyleSheet.create({
-    container: {
+    screen: {
         flex: 1,
+    },
+    container: {
+        // flex: 1,
         backgroundColor: 'white',
     },
     itemContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginHorizontal: '10%',
-        marginVertical: 10,
-        backgroundColor: colors.btnBackground,
-        borderRadius: 10,
     },
     itemText: {
-        color: 'white',
-        paddingVertical: 20,
-        paddingLeft: 20,
-        fontFamily: 'barlow-regular'
+        width: '100%',
+        color: '#323532',
+        fontFamily: 'barlow-medium',
+        fontSize: 14,
+        paddingVertical: 10,
+        textAlign: 'center'
     }
 })
